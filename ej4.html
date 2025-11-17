@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Ejercicio 4 Plus</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h2>Identificar Cuerpo Celeste (con Descripciones)</h2>
+    <form onsubmit="identificar(event)">
+        <label>Código: 
+            <select id="codigo" required>
+                <option value="">Selecciona</option>
+                <option value="1">1 - Estrella</option>
+                <option value="2">2 - Planeta</option>
+                <option value="3">3 - Cometa</option>
+                <option value="4">4 - Asteroide</option>
+                <option value="5">5 - Galaxia</option>
+            </select>
+        </label>
+        <button type="submit">Identificar</button>
+    </form>
+    <div id="resultado"></div>
+    <script>
+        function identificar(event) {
+            event.preventDefault();
+            let codigo = parseInt(document.getElementById("codigo").value);
+            let cuerpo, desc;
+            switch (codigo) {
+                case 1: cuerpo = "Estrella"; desc = "Fuente de luz y calor."; break;
+                case 2: cuerpo = "Planeta"; desc = "Orbita una estrella."; break;
+                case 3: cuerpo = "Cometa"; desc = "Objeto helado con cola."; break;
+                case 4: cuerpo = "Asteroide"; desc = "Roca espacial pequeña."; break;
+                case 5: cuerpo = "Galaxia"; desc = "Agrupación masiva de estrellas."; break;
+                default: cuerpo = "Código inválido"; desc = "";
+            }
+            document.getElementById("resultado").innerHTML = `<strong>Cuerpo:</strong> ${cuerpo}<br><strong>Descripción:</strong> ${desc}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Ejercicio 2 Plus</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h2>Registrar Distancias de Planetas (con Estadísticas)</h2>
+    <form onsubmit="registrar(event)">
+        <label>Número de distancias: <input type="number" id="num" min="1" required></label>
+        <button type="submit">Registrar</button>
+    </form>
+    <div id="resultado"></div>
+    <ul id="lista"></ul>
+    <script>
+        function registrar(event) {
+            event.preventDefault();
+            let num = parseInt(document.getElementById("num").value);
+            let distancias = [];
+            let suma = 0;
+            for (let i = 0; i < num; i++) {
+                let dist = parseFloat(prompt(`Distancia ${i+1} en millones de km:`));
+                if (isNaN(dist) || dist <= 0) {
+                    document.getElementById("resultado").textContent = "Error: Distancia inválida.";
+                    return;
+                }
+                distancias.push(dist);
+                suma += dist;
+            }
+            let promedio = suma / num;
+            let max = Math.max(...distancias);
+            let min = Math.min(...distancias);
+            document.getElementById("resultado").textContent = `Promedio: ${promedio.toFixed(2)} Mkm, Máx: ${max} Mkm, Mín: ${min} Mkm`;
+            let lista = document.getElementById("lista");
+            lista.innerHTML = "";
+            distancias.forEach(d => {
+                let li = document.createElement("li");
+                li.textContent = `${d} Mkm`;
+                lista.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
